@@ -3,7 +3,7 @@
 A basic typing speed game built using vanilla HTML and JavaScript.  
 This project was created to help refresh my JavaScript knowledge.
 
-##Features
+## Features
 
 - Random sentence generation from a preset list.
 - Real-time input checking.
