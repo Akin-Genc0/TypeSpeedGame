@@ -2,6 +2,8 @@ const startBtn = document.querySelector('.str');
 const content = document.querySelector('.hold');
 const inp = document.querySelector('#userInput');
 const timer =  document.querySelector("p");
+ const winerScreen = document.getElementById("winnerMsg");
+
 
 //array with random sentences
 const randomSen = [
@@ -13,12 +15,19 @@ const randomSen = [
 ]
 
 
+//creaeting reset button
+const resetBtn = document.createElement('button');
+resetBtn.textContent = "Reset"
+
+
+
 let storeInput = [];
 
 function getRandomSen(arr) {
     const i = Math.floor(Math.random() * arr.length);
     return arr[i]; 
 }
+
  
 let setTime;  //global varibal
 
@@ -28,6 +37,8 @@ let setTime;  //global varibal
         let increment  =  Number(text) + 1 
         timer.textContent > 0 ? timer.textContent = increment : 0;
     }
+
+
 
 
 //start button
@@ -44,14 +55,33 @@ startBtn.addEventListener('click', function(){
 //check input in real time
    inp.addEventListener("input" , function() {
 
+    
+
     if(inp.value === sentenceText){
-        alert("you win");
-        clearInterval(setTime)
+
+        let timeTaken = timer.textContent;
+        winerScreen.textContent = `You WinTime: ${timeTaken} seconds`;
+        winerScreen.append(resetBtn);
+        winerScreen.style.color = "green";
+        clearInterval(setTime);
+       
         } 
 });
 
- 
 });
 
+
+resetBtn.addEventListener('click', function(){
+
+  
+    const sentenceText = getRandomSen(randomSen);
+    content.textContent = sentenceText;
+    inp.value = "";
+    timer.textContent = 1;
+    setTime = setInterval(myTimer, 1000)
+     winerScreen.textContent = "";
+
+
+});
 
 
